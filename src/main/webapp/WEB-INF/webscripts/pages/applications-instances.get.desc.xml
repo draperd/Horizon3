@@ -1,0 +1,6 @@
+<webscript>
+  <shortname>Application Instances</shortname>
+  <description>This lists the application instances that have been created and allows them to be created and deleted</description>
+  <family>Horizon3</family>
+  <url>/application-instances</url>
+</webscript>

@@ -8,7 +8,6 @@ var services = [
          rawData: true
       }
    },
-   "alfresco/services/PreferenceService",
    "alfresco/services/NavigationService"
 ].concat(getDocumentLibraryServices());
 

@@ -3,11 +3,12 @@
 var services = [
    "alfresco/services/CrudService",
    "alfresco/services/DialogService",
-   "alfresco/services/NotificationService"
+   "alfresco/services/NotificationService",
+   "alfresco/services/OptionsService"
 ];
 
 buildPageModel({
-   title: "Applications",
+   title: "Application Instances",
    description: "The future of application creation starts here!",
    services: services,
    widgets: [
@@ -22,7 +23,7 @@ buildPageModel({
                formSubmissionTopic: "ALF_CRUD_CREATE",
                formSubmissionGlobal: true,
                formSubmissionPayloadMixin: {
-                  url: "horizon3/app-type"
+                  url: "horizon3/app-instance"
                },
                widgets: [
                   {
@@ -31,7 +32,7 @@ buildPageModel({
                      config: {
                         name: "name",
                         label: "Application Name",
-                        description: "The unique name for this application type",
+                        description: "The unique name for this application instance",
                         placeHolder: "Name...",
                         value: "",
                         requirementConfig: {
@@ -41,12 +42,20 @@ buildPageModel({
                   },
                   {
                      id: "APP_TYPE_ROOT_PAGE",
-                     name: "alfresco/forms/controls/TextBox",
+                     name: "alfresco/forms/controls/Select",
                      config: {
-                        name: "rootPage",
-                        label: "Root page",
+                        name: "applicationType",
+                        label: "Application Template",
                         description: "Select the first page displayed for the application",
-                        value: "",
+                        optionsConfig: {
+                           publishTopic: "ALF_GET_FORM_CONTROL_OPTIONS",
+                           publishPayload: {
+                              url: "/horizon3/proxy/alfresco/horizon3/app-types",
+                              itemsAttribute: "items",
+                              labelAttribute: "name",
+                              valueAttribute: "nodeRef"
+                           }
+                        },
                         requirementConfig: {
                            initialValue: true
                         }
@@ -61,9 +70,9 @@ buildPageModel({
          config: {
             loadDataPublishTopic: "ALF_CRUD_GET_ALL",
             loadDataPublishPayload: {
-               url: "horizon3/app-types"
+               url: "horizon3/app-instances"
             },
-            noDataMessage: "There are no application types defined",
+            noDataMessage: "There are no application instances created",
             widgets: [
                {
                   name: "alfresco/lists/views/AlfListView",

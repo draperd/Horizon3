@@ -41,9 +41,24 @@ buildPageModel({
                {
                   name: "horizon3/LaunchpadItem",
                   config: {
-                     label: "Applications",
+                     label: "Application Templates",
                      cssClass: "lpitem-admin",
-                     targetUrl: "ap/ws/applications",
+                     targetUrl: "ap/ws/application-types",
+                     renderFilter: [
+                        {
+                           target: "groupMemberships",
+                           property: "GROUP_ALFRESCO_ADMINISTRATORS",
+                           values: [true]
+                        }
+                     ]
+                  }
+               },
+               {
+                  name: "horizon3/LaunchpadItem",
+                  config: {
+                     label: "Application Instances",
+                     cssClass: "lpitem-admin",
+                     targetUrl: "ap/ws/application-instances",
                      renderFilter: [
                         {
                            target: "groupMemberships",
