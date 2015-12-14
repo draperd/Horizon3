@@ -1,0 +1,6 @@
+<webscript>
+  <shortname>Repository Browser</shortname>
+  <description>This is used to render a document library for browsing the Alfresco Repository</description>
+  <family>Horizon3</family>
+  <url>/repository</url>
+</webscript>

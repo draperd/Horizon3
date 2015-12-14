@@ -11,6 +11,21 @@ buildPageModel({
                {
                   name: "horizon3/LaunchpadItem",
                   config: {
+                     label: "Repository Browser",
+                     cssClass: "lpitem-admin",
+                     targetUrl: "ap/ws/repository",
+                     renderFilter: [
+                        {
+                           target: "groupMemberships",
+                           property: "GROUP_ALFRESCO_ADMINISTRATORS",
+                           values: [true]
+                        }
+                     ]
+                  }
+               },
+               {
+                  name: "horizon3/LaunchpadItem",
+                  config: {
                      label: "Page Creator",
                      cssClass: "lpitem-admin",
                      targetUrl: "ap/ws/page-creator",
