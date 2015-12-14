@@ -1,0 +1,6 @@
+<webscript>
+  <shortname>Page Creator</shortname>
+  <description>This will be used for creating both pages and templates using a drag-and-drop interface</description>
+  <family>Horizon3</family>
+  <url>/page-creator</url>
+</webscript>

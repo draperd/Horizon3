@@ -43,7 +43,7 @@
        * @type {object[]}
        * @default [{cssFile:"./css/Launchpad.css"}]
        */
-      cssRequirements: [{cssFile:"./css/Launchpad.css",mediaType:"screen"}],
+      cssRequirements: [{cssFile:"./css/Launchpad.css"}],
 
       /**
        * An array of the i18n files to use with this widget.
