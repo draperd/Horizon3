@@ -87,9 +87,16 @@ buildPageModel({
                                     config: {
                                        widgets: [
                                           {
-                                             name: "alfresco/renderers/Property",
+                                             name: "alfresco/renderers/PropertyLink",
                                              config: {
-                                                propertyToRender: "name"
+                                                propertyToRender: "name",
+                                                useCurrentItemAsPayload: false,
+                                                publishTopic: "ALF_NAVIGATE_TO_PAGE",
+                                                publishPayloadType: "PROCESS",
+                                                publishPayloadModifiers: ["processCurrentItemTokens"],
+                                                publishPayload: {
+                                                   url: "app/{name}"
+                                                }
                                              }
                                           }
                                        ]

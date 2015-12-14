@@ -1,1 +1,1 @@
-model.preferences = preferences.value;
+//model.preferences = preferences.value;
