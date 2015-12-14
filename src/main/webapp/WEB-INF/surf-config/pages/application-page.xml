@@ -1,0 +1,6 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<page>
+   <id>app</id>
+   <template-instance>application-template-instance</template-instance>
+   <authentication>user</authentication>
+</page>

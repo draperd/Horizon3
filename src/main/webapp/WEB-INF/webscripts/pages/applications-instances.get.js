@@ -15,11 +15,11 @@ buildPageModel({
       {
          name: "alfresco/buttons/AlfButton",
          config: {
-            label: "Create New",
+            label: "Create Application",
             publishTopic: "ALF_CREATE_FORM_DIALOG_REQUEST",
             publishPayload: {
                dialogId: "CREATE_APP_TYPE_DIALOG",
-               dialogTitle: "Create Application Type",
+               dialogTitle: "Create Application Instance",
                formSubmissionTopic: "ALF_CRUD_CREATE",
                formSubmissionGlobal: true,
                formSubmissionPayloadMixin: {

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<template-type>
+   <title>Application Page</title>
+   <description>This page type can be used to render application pages</description>
+   <processor mode="view">
+      <id>webscript</id>
+      <uri>/application-page/template</uri>
+   </processor>
+</template-type>

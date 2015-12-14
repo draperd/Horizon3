@@ -122,12 +122,10 @@
     -->
     <config evaluator="string-compare" condition="UriTemplate">
          <uri-templates>
-            <uri-template id="remote-app-page">/a/{pageid}/{application}/p/{pagename}</uri-template>
-            <uri-template id="remote-app-page">/a/{pageid}/{application}</uri-template>
-            <uri-template id="remote-page">/{pageid}/p/{pagename}</uri-template>
-            <uri-template id="sitepage">/site/{site}/{pageid}/ws/{webscript}</uri-template>
             <uri-template id="userpage">/user/{userid}/{pageid}/ws/{webscript}</uri-template>
+            <uri-template id="app-page">/{pageid}/{application}/p/{pagename}</uri-template>
             <uri-template id="page">/{pageid}/ws/{webscript}</uri-template>
+            <uri-template id="remote-app-page">/{pageid}/{application}</uri-template>
         </uri-templates>
    </config>
 

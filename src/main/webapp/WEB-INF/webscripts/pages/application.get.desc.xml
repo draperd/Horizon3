@@ -1,0 +1,6 @@
+<webscript>
+  <shortname>Application Page</shortname>
+  <description>Retrieves pages for applications</description>
+  <family>Horizon3</family>
+  <url>/application-page/webscript</url>
+</webscript>
