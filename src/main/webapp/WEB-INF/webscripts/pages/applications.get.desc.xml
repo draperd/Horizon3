@@ -1,0 +1,6 @@
+<webscript>
+  <shortname>Applications</shortname>
+  <description>This lists the application types that have been created and allows them to be created and deleted</description>
+  <family>Horizon3</family>
+  <url>/applications</url>
+</webscript>

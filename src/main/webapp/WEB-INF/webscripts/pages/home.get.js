@@ -41,9 +41,9 @@ buildPageModel({
                {
                   name: "horizon3/LaunchpadItem",
                   config: {
-                     label: "Application Creator",
+                     label: "Applications",
                      cssClass: "lpitem-admin",
-                     targetUrl: "ap/ws/app-creator",
+                     targetUrl: "ap/ws/applications",
                      renderFilter: [
                         {
                            target: "groupMemberships",

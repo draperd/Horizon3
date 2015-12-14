@@ -44,6 +44,16 @@ function buildPageModel(data) {
                                  setBrowserTitle: "Horizon 3",
                                  targetUrl: "ap/ws/home"
                               }
+                           },
+                           {
+                              id: "LOGOUT",
+                              name: "alfresco/buttons/AlfButton",
+                              align: "right",
+                              config:
+                              {
+                                 label: "Logout",
+                                 publishTopic: "ALF_DOLOGOUT"
+                              }
                            }
                         ]
                      }
