@@ -1,0 +1,81 @@
+.horizon3-LaunchpadItem {
+   display: inline-block;
+   width: 20em;
+   height: 20em;
+   border: 0px;
+   background: #666666;
+   border-radius: 0.25em;
+   margin: 0.4em;
+   background-position: bottom 20px right 20px;
+   background-repeat: no-repeat;
+}
+.horizon3-LaunchpadItem h2 {
+   color: white;
+   padding: 0.5em;
+   font-weight: normal;
+   font-size: 150%;
+   margin: 0;
+}
+.horizon3-LaunchpadItem h2 a, 
+.horizon3-LaunchpadItem h2 a:link, 
+.horizon3-LaunchpadItem h2 a:visited, 
+.horizon3-LaunchpadItem h2 a:active {
+   color: white;
+   text-decoration: none;
+}
+.horizon3-LaunchpadItem.lpitem-activities {
+   background-color: #315666;
+   background-image: url("./images/activities.png");
+}
+.horizon3-LaunchpadItem.lpitem-activities h2 {
+   background-color: #466776;
+}
+.horizon3-LaunchpadItem.lpitem-myfiles {
+   background-color: #1a5581;
+   background-image: url("./images/my-files.png");
+}
+.horizon3-LaunchpadItem.lpitem-myfiles h2 {
+   background-color: #31658d;
+}
+.horizon3-LaunchpadItem.lpitem-tasks {
+   background-color: #d77244;
+   background-image: url("./images/tasks.png");
+}
+.horizon3-LaunchpadItem.lpitem-tasks h2 {
+   background-color: #d98056;
+}
+.horizon3-LaunchpadItem.lpitem-site {
+   background-color: #007562;
+   background-image: url("./images/site.png");
+}
+.horizon3-LaunchpadItem.lpitem-sites h2 {
+   background-color: #1a8372;
+}
+.horizon3-LaunchpadItem.lpitem-dashboard {
+   background-color: #7d3028;
+   background-image: url("./images/dashboard.png");
+}
+.horizon3-LaunchpadItem.lpitem-dashboard h2 {
+   background-color: #8a463d;
+}
+.horizon3-LaunchpadItem.lpitem-people {
+   background-color: #516192;
+   background-image: url("./images/people.png");
+}
+.horizon3-LaunchpadItem.lpitem-people h2 {
+   background-color: #64719d;
+}
+.horizon3-LaunchpadItem.lpitem-recent-files {
+   background-color: #1a5581;
+   background-image: url("./images/recent-files.png");
+}
+.horizon3-LaunchpadItem.lpitem-recent-files h2 {
+   background-color: #31658d;
+}
+.horizon3-LaunchpadItem.lpitem-admin {
+   background-color: #2c323e;
+   background-image: url("./images/admin.png");
+}
+.horizon3-LaunchpadItem.lpitem-admin h2 {
+   background-color: #414753;
+}
