@@ -1,6 +1,8 @@
 <import resource="classpath:alfresco/site-webscripts/imports/horizon3.lib.js">
 <import resource="classpath:alfresco/site-webscripts/org/alfresco/aikau/webscript/libs/dnd-models/layout.lib.js">
 
+<import resource="classpath:alfresco/site-webscripts/imports/models/forms.lib.js">
+
 var palette = [
    {
       id: "DRAG_PALETTE",
@@ -20,6 +22,18 @@ var palette = [
       name: "alfresco/dnd/DragAndDropItems",
       config: {
          items: [
+            {
+               type: [ "widget" ],
+               label: "Form Control",
+               value: {
+                  name: "alfresco/forms/controls/TextBox",
+                  config: {
+                     label: "No Label",
+                     description: "No description",
+                     value: ""
+                  }
+               }
+            },
             {
                type: [ "widget" ],
                label: "Classic Window",
@@ -151,7 +165,8 @@ var services = getBasicCreationTemplateServices().concat([
       name: "alfresco/services/DragAndDropModellingService",
       config: {
          models: [
-            getDefaultClassicWindowModel()
+            getDefaultClassicWindowModel(),
+            getDefaultFormControlModel()
          ]
       }
    }
