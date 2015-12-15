@@ -94,6 +94,30 @@ buildPageModel({
                                           }
                                        ]
                                     }
+                                 },
+                                 {
+                                    name: "alfresco/lists/views/layouts/Cell",
+                                    config: {
+                                       widgets: [
+                                          {
+                                             name: "alfresco/renderers/PublishAction",
+                                             config: {
+                                                altText: "Click to delete {name}",
+                                                iconClass: "delete-16",
+                                                publishTopic: "ALF_CRUD_DELETE",
+                                                publishPayloadType: "PROCESS",
+                                                publishPayloadModifiers: ["processCurrentItemTokens"],
+                                                publishPayload: {
+                                                   url: "horizon3/app-type/name/{name}",
+                                                   requiresConfirmation: true,
+                                                   confirmationTitle: "Confirm Deletion",
+                                                   confirmationPrompt: "Delete {name}?",
+                                                   successMessage: "Application Type {name} deleted"
+                                                }
+                                             }
+                                          }
+                                       ]
+                                    }
                                  }
                               ]
                            }
