@@ -1,0 +1,10 @@
+.@{alfresco} {
+   h1.alfresco-header-Title.horizon3-Title {
+      .alfresco-header-Title__text {
+         color: #fff;
+         > a {
+            color: #fff;
+         }
+      }
+   }
+}

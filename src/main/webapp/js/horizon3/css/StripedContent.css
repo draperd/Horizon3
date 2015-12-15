@@ -1,0 +1,12 @@
+.horizon3-StripedContent {
+
+   /* Push logout button down the page */
+   #TOP_HEADER {
+      .alfresco-layout-LeftAndRight__right {
+         .alfresco-buttons-AlfButton {
+            margin-top: 19px
+         }
+      }
+   }
+
+}

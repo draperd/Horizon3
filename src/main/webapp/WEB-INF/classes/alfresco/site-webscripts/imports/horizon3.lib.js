@@ -17,11 +17,12 @@ function buildPageModel(data) {
       ].concat(data.services || []),
       widgets: [
          {
-            name: "alfresco/layout/StripedContent",
+            name: "horizon3/StripedContent",
             config: {
                contentWidth: "1400px",
                widgets: [
                   {
+                     id: "TOP_HEADER",
                      name: "alfresco/layout/LeftAndRight",
                      stripeClass: "header",
                      className: "share-header-title",
@@ -37,7 +38,7 @@ function buildPageModel(data) {
                               }
                            },
                            {
-                              name: "alfresco/header/Title",
+                              name: "horizon3/Title",
                               align: "left",
                               config: {
                                  label: data.title,
@@ -46,13 +47,58 @@ function buildPageModel(data) {
                               }
                            },
                            {
-                              id: "LOGOUT",
+                              id: "LOGOUT_BUTTON",
                               name: "alfresco/buttons/AlfButton",
                               align: "right",
                               config:
                               {
                                  label: "Logout",
+                                 additionalCssClasses: "primary-call-to-action",
                                  publishTopic: "ALF_DOLOGOUT"
+                              }
+                           }
+                        ]
+                     }
+                  },
+                  {
+                     name: "alfresco/layout/VerticalWidgets",
+                     stripeClass: "sub-header",
+                     stripeStyle: "box-shadow: inset 0 0 1px 0 rgba(0, 0, 0, 0.25);background-color:#eee;",
+                     config: {
+                        widgets: [
+                           {
+                              name: "alfresco/menus/AlfMenuBar",
+                              config: {
+                                 widgets: [
+                                    {
+                                       name: "alfresco/menus/AlfMenuBarItem",
+                                       config: {
+                                          label: "Repository Browser",
+                                          targetUrl: "ap/ws/repository"
+                                       }
+                                    },
+                                    {
+                                       name: "alfresco/menus/AlfMenuBarItem",
+                                       config: {
+                                          label: "Pages",
+                                          targetUrl: "ap/ws/page-creator"
+                                       }
+                                    },
+                                    {
+                                       name: "alfresco/menus/AlfMenuBarItem",
+                                       config: {
+                                          label: "Application Templates",
+                                          targetUrl: "ap/ws/application-types"
+                                       }
+                                    },
+                                    {
+                                       name: "alfresco/menus/AlfMenuBarItem",
+                                       config: {
+                                          label: "Applications Instances",
+                                          targetUrl: "ap/ws/application-instances"
+                                       }
+                                    }
+                                 ]
                               }
                            }
                         ]

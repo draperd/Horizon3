@@ -13,7 +13,7 @@ var services = [
 
 buildPageModel({
    title: "Welcome to Horizon 3",
-   description: "The future of application creation starts here!",
+   description: "This page allows you to browse the Alfresco Repository",
    services: services,
    widgets: [
       getDocLib({

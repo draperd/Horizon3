@@ -9,7 +9,7 @@ var services = [
 
 buildPageModel({
    title: "Application Instances",
-   description: "The future of application creation starts here!",
+   description: "Manage the application instances that are available.",
    services: services,
    widgets: [
       {

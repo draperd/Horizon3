@@ -1,5 +1,35 @@
 <import resource="classpath:alfresco/site-webscripts/imports/horizon3.lib.js">
 
+var apps = [];
+var json = remote.call("/horizon3/app-instances");
+var appData;
+try
+{
+   if (json.status == 200)
+   {
+      appData = JSON.parse(json.response);
+   }
+   if (appData &&
+       appData.items)
+   {
+      for (var i=0; i<appData.items.length; i++)
+      {
+         apps.push({
+            name: "horizon3/LaunchpadItem",
+            config: {
+               label: appData.items[i].name,
+               cssClass: "lpitem-admin",
+               targetUrl: "app/" + appData.items[i].name
+            }
+         })
+      }
+   }
+}
+catch(e)
+{
+   // Error occurred processing the application data...
+}
+
 buildPageModel({
    title: "Welcome to Horizon 3",
    description: "The future of application creation starts here!",
@@ -7,71 +37,8 @@ buildPageModel({
       {
          name: "horizon3/Launchpad",
          config: {
-            widgets: [
-               {
-                  name: "horizon3/LaunchpadItem",
-                  config: {
-                     label: "Repository Browser",
-                     cssClass: "lpitem-admin",
-                     targetUrl: "ap/ws/repository",
-                     renderFilter: [
-                        {
-                           target: "groupMemberships",
-                           property: "GROUP_ALFRESCO_ADMINISTRATORS",
-                           values: [true]
-                        }
-                     ]
-                  }
-               },
-               {
-                  name: "horizon3/LaunchpadItem",
-                  config: {
-                     label: "Page Creator",
-                     cssClass: "lpitem-admin",
-                     targetUrl: "ap/ws/page-creator",
-                     renderFilter: [
-                        {
-                           target: "groupMemberships",
-                           property: "GROUP_ALFRESCO_ADMINISTRATORS",
-                           values: [true]
-                        }
-                     ]
-                  }
-               },
-               {
-                  name: "horizon3/LaunchpadItem",
-                  config: {
-                     label: "Application Templates",
-                     cssClass: "lpitem-admin",
-                     targetUrl: "ap/ws/application-types",
-                     renderFilter: [
-                        {
-                           target: "groupMemberships",
-                           property: "GROUP_ALFRESCO_ADMINISTRATORS",
-                           values: [true]
-                        }
-                     ]
-                  }
-               },
-               {
-                  name: "horizon3/LaunchpadItem",
-                  config: {
-                     label: "Application Instances",
-                     cssClass: "lpitem-admin",
-                     targetUrl: "ap/ws/application-instances",
-                     renderFilter: [
-                        {
-                           target: "groupMemberships",
-                           property: "GROUP_ALFRESCO_ADMINISTRATORS",
-                           values: [true]
-                        }
-                     ]
-                  }
-               }
-            ]
+            widgets: apps
          }
       }
    ]
 });
-
-

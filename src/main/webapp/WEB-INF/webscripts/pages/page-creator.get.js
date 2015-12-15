@@ -65,7 +65,7 @@ var services = getBasicCreationTemplateServices().concat([
 
 buildPageModel({
    title: "Page and Template Creation",
-   description: "The future of application creation starts here!",
+   description: "Create pages and templates for your applications.",
    services: services,
    widgets: widgets
 });
