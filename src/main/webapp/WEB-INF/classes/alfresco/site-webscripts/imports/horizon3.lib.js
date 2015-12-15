@@ -81,7 +81,7 @@ function buildPageModel(data) {
                                        name: "alfresco/menus/AlfMenuBarItem",
                                        config: {
                                           label: "Pages",
-                                          targetUrl: "ap/ws/page-creator"
+                                          targetUrl: "ap/ws/pages"
                                        }
                                     },
                                     {

@@ -1,0 +1,6 @@
+<webscript>
+  <shortname>Page and template management</shortname>
+  <description>This lists the pages and templates that have been created on the repository</description>
+  <family>Horizon3</family>
+  <url>/pages</url>
+</webscript>

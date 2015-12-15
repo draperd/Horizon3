@@ -16,6 +16,7 @@ buildPageModel({
          name: "alfresco/buttons/AlfButton",
          config: {
             label: "Create Application",
+            additionalCssClasses: "call-to-action",
             publishTopic: "ALF_CREATE_FORM_DIALOG_REQUEST",
             publishPayload: {
                dialogId: "CREATE_APP_TYPE_DIALOG",

@@ -8,61 +8,18 @@ var services = [
 ];
 
 buildPageModel({
-   title: "Application Templates",
-   description: "Manage the templates that are available to use for applications.",
+   title: "Pages and Templates",
+   description: "Create and manage pages and templates.",
    services: services,
    widgets: [
       {
          name: "alfresco/buttons/AlfButton",
          config: {
-            label: "Create New",
+            label: "Add Page",
             additionalCssClasses: "call-to-action",
-            publishTopic: "ALF_CREATE_FORM_DIALOG_REQUEST",
+            publishTopic: "ALF_NAVIGATE_TO_PAGE",
             publishPayload: {
-               dialogId: "CREATE_APP_TYPE_DIALOG",
-               dialogTitle: "Create Application Type",
-               formSubmissionTopic: "ALF_CRUD_CREATE",
-               formSubmissionGlobal: true,
-               formSubmissionPayloadMixin: {
-                  url: "horizon3/app-type"
-               },
-               widgets: [
-                  {
-                     id: "APP_TYPE_NAME",
-                     name: "alfresco/forms/controls/TextBox",
-                     config: {
-                        name: "name",
-                        label: "Application Name",
-                        description: "The unique name for this application type",
-                        placeHolder: "Name...",
-                        value: "",
-                        requirementConfig: {
-                           initialValue: true
-                        }
-                     }
-                  },
-                  {
-                     id: "APP_TYPE_ROOT_PAGE",
-                     name: "alfresco/forms/controls/Select",
-                     config: {
-                        name: "rootPage",
-                        label: "Root page",
-                        description: "Select the first page displayed for the application",
-                        optionsConfig: {
-                           publishTopic: "ALF_GET_FORM_CONTROL_OPTIONS",
-                           publishPayload: {
-                              url: "/horizon3/proxy/alfresco/remote-share/pages",
-                              itemsAttribute: "items",
-                              labelAttribute: "name",
-                              valueAttribute: "nodeRef"
-                           }
-                        },
-                        requirementConfig: {
-                           initialValue: true
-                        }
-                     }
-                  }
-               ]
+               url: "ap/ws/page-creator"
             }
          }
       },
@@ -71,9 +28,9 @@ buildPageModel({
          config: {
             loadDataPublishTopic: "ALF_CRUD_GET_ALL",
             loadDataPublishPayload: {
-               url: "horizon3/app-types"
+               url: "remote-share/pages"
             },
-            noDataMessage: "There are no application types defined",
+            noDataMessage: "There are no pages or templates",
             widgets: [
                {
                   name: "alfresco/lists/views/AlfListView",
@@ -88,9 +45,16 @@ buildPageModel({
                                     config: {
                                        widgets: [
                                           {
-                                             name: "alfresco/renderers/Property",
+                                             name: "alfresco/renderers/PropertyLink",
                                              config: {
-                                                propertyToRender: "name"
+                                                propertyToRender: "name",
+                                                useCurrentItemAsPayload: false,
+                                                publishTopic: "ALF_NAVIGATE_TO_PAGE",
+                                                publishPayloadType: "PROCESS",
+                                                publishPayloadModifiers: ["processCurrentItemTokens"],
+                                                publishPayload: {
+                                                   url: "app/{name}"
+                                                }
                                              }
                                           }
                                        ]
@@ -109,11 +73,11 @@ buildPageModel({
                                                 publishPayloadType: "PROCESS",
                                                 publishPayloadModifiers: ["processCurrentItemTokens"],
                                                 publishPayload: {
-                                                   url: "horizon3/app-type/name/{name}",
+                                                   url: "horizon3/page/name/{name}",
                                                    requiresConfirmation: true,
                                                    confirmationTitle: "Confirm Deletion",
                                                    confirmationPrompt: "Delete {name}?",
-                                                   successMessage: "Application Type {name} deleted"
+                                                   successMessage: "Application {name} deleted"
                                                 }
                                              }
                                           }
