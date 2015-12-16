@@ -1,9 +1,9 @@
 <import resource="classpath:alfresco/site-webscripts/imports/horizon3.lib.js">
-<import resource="classpath:alfresco/site-webscripts/org/alfresco/aikau/webscript/libs/dnd-models/layout.lib.js">
-
+<import resource="classpath:alfresco/site-webscripts/org/alfresco/aikau/webscript/libs/creation/template-mapping-config.lib.js">
 <import resource="classpath:alfresco/site-webscripts/imports/models/forms.lib.js">
 <import resource="classpath:alfresco/site-webscripts/imports/models/DocumentList.lib.js">
 <import resource="classpath:alfresco/site-webscripts/imports/models/HtmlListView.lib.js">
+<import resource="classpath:alfresco/site-webscripts/imports/models/FixedHeaderFooter.lib.js">
 
 var palette = [
    {
@@ -29,6 +29,18 @@ var palette = [
                label: "Document Service",
                value: {
                   name: "alfresco/services/DocumentService",
+                  config: {
+                     useModellingService: true,
+                     label: "Widgets",
+                     targetProperty: "config.widgets"
+                  }
+               }
+            },
+            {
+               type: [ "widget" ],
+               label: "Fixed Header Footer",
+               value: {
+                  name: "alfresco/layout/FixedHeaderFooter",
                   config: {
                      useModellingService: true,
                      label: "Widgets",
@@ -69,16 +81,6 @@ var palette = [
                      label: "No Label",
                      description: "No description",
                      value: ""
-                  }
-               }
-            },
-            {
-               type: [ "widget" ],
-               label: "Classic Window",
-               value: {
-                  name: "alfresco/layout/ClassicWindow",
-                  config: {
-                     title: "Set a title"
                   }
                }
             }
@@ -214,10 +216,11 @@ var services = getBasicCreationTemplateServices().concat([
       name: "alfresco/services/DragAndDropModellingService",
       config: {
          models: [
-            getDefaultClassicWindowModel(),
+            // getDefaultClassicWindowModel(),
             getDefaultFormControlModel(),
             getDefaultDocumentListModel(),
-            getDefaultHtmlListViewModel()
+            getDefaultHtmlListViewModel(),
+            getDefaultFixedHeaderFooterModel()
          ]
       }
    }
