@@ -44,7 +44,7 @@ catch(e)
 
 buildPageModel({
    title: "Welcome to Horizon 3",
-   description: "The future of application creation starts here!",
+   description: "The following applications are available.",
    widgets: [
       {
          name: "horizon3/Launchpad",

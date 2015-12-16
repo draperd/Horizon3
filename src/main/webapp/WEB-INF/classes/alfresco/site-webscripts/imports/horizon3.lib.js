@@ -47,6 +47,13 @@ function buildPageModel(data) {
                               }
                            },
                            {
+                              name: "horizon3/Title",
+                              align: "right",
+                              config: {
+                                 label: user.name
+                              }
+                           },
+                           {
                               id: "LOGOUT_BUTTON",
                               name: "alfresco/buttons/AlfButton",
                               align: "right",
@@ -107,6 +114,13 @@ function buildPageModel(data) {
                                     }
                                  ]
                               }
+                           }
+                        ],
+                        renderFilter: [
+                           {
+                              target: "groupMemberships",
+                              property: "GROUP_ALFRESCO_ADMINISTRATORS",
+                              values: [true]
                            }
                         ]
                      }

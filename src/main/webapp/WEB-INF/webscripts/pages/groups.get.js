@@ -195,35 +195,30 @@ var groupUsersModel = [
    {
       name: "alfresco/buttons/AlfButton",
       config: {
-         label: "Add Users to Group",
+         label: "Add User to Group",
          publishTopic: "ALF_CREATE_FORM_DIALOG_REQUEST",
          publishPayload: {
-            dialogId: "CREATE_GROUP_DIALOG",
-            dialogTitle: "Add Users To Group",
+            dialogId: "ADD_USERS_TO_GROUP_DIALOG",
+            dialogTitle: "Add User To Group",
             formSubmissionTopic: "HORIZON3_ADD_USERS_TO_GROUP",
+            formSubmissionPayloadMixin: {
+               groupId: "{shortName}",
+               responseScope: "GROUP_{shortName}"
+            },
             widgets: [
                {
-                  name: "alfresco/forms/controls/MultiSelectInput",
+                  name: "alfresco/forms/controls/Select",
                   config: {
                      fieldId: "USER",
-                     label: "Select Users",
-                     name: "users",
-                     width: "310px",
+                     label: "Select User",
+                     name: "userName",
                      optionsConfig: {
-                        publishTopic: "ALF_CRUD_GET_ALL",
+                        publishTopic: "ALF_GET_FORM_CONTROL_OPTIONS",
                         publishPayload: {
-                           url: "api/people?filter=",
-                           resultsProperty: "response.people"
-                        },
-                        queryAttribute: "userName",
-                        valueAttribute: "userName",
-                        publishGlobal: true,
-                        choiceCanWrap: true,
-                        choiceMaxWidth: "150px",
-                        labelFormat: {
-                           choice: "{firstName} {lastName}",
-                           result: "{firstName} {lastName}",
-                           full: "ID={userName}, Name={userName}"
+                           url: url.context + "/proxy/alfresco/api/people?filter=",
+                           itemsAttribute: "people",
+                           labelAttribute: "userName",
+                           valueAttribute: "userName"
                         }
                      }
                   }
@@ -260,6 +255,31 @@ var groupUsersModel = [
                                           name: "alfresco/renderers/Property",
                                           config: {
                                              propertyToRender: "displayName"
+                                          }
+                                       }
+                                    ]
+                                 }
+                              },
+                              {
+                                 name: "alfresco/lists/views/layouts/Cell",
+                                 config: {
+                                    widgets: [
+                                       {
+                                          name: "alfresco/renderers/PublishAction",
+                                          config: {
+                                             propertyToRender: "displayName",
+                                             iconClass: "delete-16",
+                                             publishTopic: "ALF_CRUD_DELETE",
+                                             publishGlobal: true,
+                                             publishPayloadType: "PROCESS",
+                                             publishPayloadModifiers: ["processCurrentItemTokens"],
+                                             publishPayload: {
+                                                url: "api/groups/{shortName}/children/{displayName}",
+                                                requiresConfirmation: true,
+                                                confirmationTitle: "Remove User From Group",
+                                                confirmationPrompt: "Remove {displayName} from the group?",
+                                                successMessage: "User {displayName} removed"
+                                             }
                                           }
                                        }
                                     ]
@@ -385,17 +405,17 @@ var groupsTab = {
                                                                {
                                                                   name: "alfresco/renderers/PublishAction",
                                                                   config: {
-                                                                     altText: "Click to delete {name}",
+                                                                     propertyToRender: "displayName",
                                                                      iconClass: "delete-16",
                                                                      publishTopic: "ALF_CRUD_DELETE",
                                                                      publishPayloadType: "PROCESS",
                                                                      publishPayloadModifiers: ["processCurrentItemTokens"],
                                                                      publishPayload: {
-                                                                        url: "horizon3/app-instance/name/{name}",
+                                                                        url: "api/groups/{shortName}",
                                                                         requiresConfirmation: true,
                                                                         confirmationTitle: "Confirm Deletion",
-                                                                        confirmationPrompt: "Delete {name}?",
-                                                                        successMessage: "Application {name} deleted"
+                                                                        confirmationPrompt: "Delete {displayName}?",
+                                                                        successMessage: "Application {displayName} deleted"
                                                                      }
                                                                   }
                                                                }

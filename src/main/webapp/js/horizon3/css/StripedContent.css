@@ -4,7 +4,8 @@
    #TOP_HEADER {
       .alfresco-layout-LeftAndRight__right {
          .alfresco-buttons-AlfButton {
-            margin-top: 19px
+            margin-top: 19px;
+            margin-left: 15px;
          }
       }
    }

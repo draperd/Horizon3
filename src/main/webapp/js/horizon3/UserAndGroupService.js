@@ -50,9 +50,7 @@ define(["dojo/_base/declare",
          this.serviceXhr({
             url: AlfConstants.PROXY_URI + "api/groups/" + payload.groupId + "/children/" + payload.userName,
             method: "POST",
-            data: {
-               pubSubScope: payload.pubSubScope
-            },
+            alfResponseScope: payload.alfResponseScope,
             successCallback: this.onSuccess,
             callbackScope: this
          });
@@ -79,7 +77,7 @@ define(["dojo/_base/declare",
        * @instance
        */
       onSuccess: function horizon3_UserAndGroupService__onSuccess(response, originalRequestConfig) {
-         this.alfPublish("ALF_DOCLIST_RELOAD_DATA", {});
+         this.alfPublish("ALF_DOCLIST_RELOAD_DATA", {}, false, false, originalRequestConfig.alfResponseScope);
       }
    });
 });
