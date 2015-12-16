@@ -233,6 +233,14 @@ if (appName)
       if (pageModel)
       {
          processTemplates(pageModel);
+
+         // Swap out any references to {app}
+         var modelAsString = JSON.stringify(pageModel);
+
+         var re = /\{app\}/g;
+         var updatedModel = modelAsString.replace(re, appData.nodeRef);
+         pageModel = JSON.parse(updatedModel);
+
          model.jsonModel = pageModel;
          model.jsonModel.groupMemberships = user.properties.alfUserGroups;
       }
