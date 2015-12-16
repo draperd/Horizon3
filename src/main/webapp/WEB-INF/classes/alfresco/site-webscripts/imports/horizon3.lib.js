@@ -97,6 +97,13 @@ function buildPageModel(data) {
                                           label: "Applications Instances",
                                           targetUrl: "ap/ws/application-instances"
                                        }
+                                    },
+                                    {
+                                       name: "alfresco/menus/AlfMenuBarItem",
+                                       config: {
+                                          label: "Users and Groups",
+                                          targetUrl: "ap/ws/groups"
+                                       }
                                     }
                                  ]
                               }

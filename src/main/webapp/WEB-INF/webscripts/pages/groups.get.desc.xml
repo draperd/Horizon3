@@ -1,0 +1,6 @@
+<webscript>
+  <shortname>Group Management</shortname>
+  <description>This page allows user and group management</description>
+  <family>Horizon3</family>
+  <url>/groups</url>
+</webscript>
