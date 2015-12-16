@@ -2,6 +2,8 @@
 <import resource="classpath:alfresco/site-webscripts/org/alfresco/aikau/webscript/libs/dnd-models/layout.lib.js">
 
 <import resource="classpath:alfresco/site-webscripts/imports/models/forms.lib.js">
+<import resource="classpath:alfresco/site-webscripts/imports/models/DocumentList.lib.js">
+<import resource="classpath:alfresco/site-webscripts/imports/models/HtmlListView.lib.js">
 
 var palette = [
    {
@@ -22,6 +24,42 @@ var palette = [
       name: "alfresco/dnd/DragAndDropItems",
       config: {
          items: [
+            {
+               type: [ "service" ],
+               label: "Document Service",
+               value: {
+                  name: "alfresco/services/DocumentService",
+                  config: {
+                     useModellingService: true,
+                     label: "Widgets",
+                     targetProperty: "config.widgets"
+                  }
+               }
+            },
+            {
+               type: [ "widget" ],
+               label: "Document List",
+               value: {
+                  name: "alfresco/documentlibrary/AlfDocumentList",
+                  config: {
+                     useModellingService: true,
+                     label: "Widgets",
+                     targetProperty: "config.widgets"
+                  }
+               }
+            },
+            {
+               type: [ "widget" ],
+               label: "HTML List View",
+               value: {
+                  name: "alfresco/lists/views/HtmlListView",
+                  config: {
+                     useModellingService: true,
+                     label: "Widgets",
+                     targetProperty: "config.widgets"
+                  }
+               }
+            },
             {
                type: [ "widget" ],
                label: "Form Control",
@@ -125,6 +163,17 @@ function getBasicCreationTemplateWidgets(paletteWidgets) {
                                              }
                                           },
                                           {
+                                             id: "DROPPED_SERVICES",
+                                             name: "alfresco/forms/controls/DragAndDropTargetControl",
+                                             config: {
+                                                label: "Services",
+                                                name: "services",
+                                                value: null,
+                                                acceptTypes: ["service"],
+                                                useModellingService: true
+                                             }
+                                          },
+                                          {
                                              id: "ROOT_DROPPED_ITEMS1",
                                              name: "alfresco/forms/controls/DragAndDropTargetControl",
                                              config: {
@@ -166,7 +215,9 @@ var services = getBasicCreationTemplateServices().concat([
       config: {
          models: [
             getDefaultClassicWindowModel(),
-            getDefaultFormControlModel()
+            getDefaultFormControlModel(),
+            getDefaultDocumentListModel(),
+            getDefaultHtmlListViewModel()
          ]
       }
    }

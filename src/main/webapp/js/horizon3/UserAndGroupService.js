@@ -47,7 +47,15 @@ define(["dojo/_base/declare",
        * @instance
        */
       addUsersToGroup: function horizon3_UserAndGroupService__createGroup(payload) {
-
+         this.serviceXhr({
+            url: AlfConstants.PROXY_URI + "api/groups/" + payload.groupId + "/children/" + payload.userName,
+            method: "POST",
+            data: {
+               pubSubScope: payload.pubSubScope
+            },
+            successCallback: this.onSuccess,
+            callbackScope: this
+         });
       },
 
       /**
