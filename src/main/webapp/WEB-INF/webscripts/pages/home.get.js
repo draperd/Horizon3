@@ -14,14 +14,26 @@ try
    {
       for (var i=0; i<appData.items.length; i++)
       {
-         apps.push({
+         var app = {
             name: "horizon3/LaunchpadItem",
             config: {
                label: appData.items[i].name,
                cssClass: "lpitem-admin",
                targetUrl: "app/" + appData.items[i].name
             }
-         })
+         }; 
+
+         if (appData.items[i].groups)
+         {
+            app.config.renderFilter = [
+               {
+                  target: "groupMemberships",
+                  property: "GROUP_" + appData.items[i].groups,
+                  values: [true]
+               }
+            ];
+         }
+         apps.push(app);
       }
    }
 }

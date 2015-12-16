@@ -61,6 +61,42 @@ buildPageModel({
                            initialValue: true
                         }
                      }
+                  },
+                  {
+                     name: "alfresco/forms/controls/CheckBox",
+                     config: {
+                        fieldId: "RESTRICT",
+                        name: "restrict",
+                        label: "Restrict to certain groups",
+                        description: "Check this box if you only want to allow this application to be visible to certain groups",
+                        value: false
+                     }
+                  },
+                  {
+                     name: "alfresco/forms/controls/Select",
+                     config: {
+                        name: "groups",
+                        label: "Group Visibility",
+                        description: "Select the user group that will be able to access this application",
+                        visibilityConfig: {
+                           initialValue: false,
+                           rules: [
+                              {
+                                 targetId: "RESTRICT",
+                                 is: [true]
+                              }
+                           ]
+                        },
+                        optionsConfig: {
+                           publishTopic: "ALF_GET_FORM_CONTROL_OPTIONS",
+                           publishPayload: {
+                              url: "/horizon3/proxy/alfresco/api/groups?sortBy=displayName&zone=APP.DEFAULT",
+                              itemsAttribute: "data",
+                              labelAttribute: "displayName",
+                              valueAttribute: "shortName"
+                           }
+                        }
+                     }
                   }
                ]
             }
