@@ -39,6 +39,15 @@ define(["dojo/_base/declare",
        */
       registerSubscriptions: function horizon3_UserAndGroupService__registerSubscriptions(args) {
          this.alfSubscribe("HORIZON3_CREATE_GROUP", lang.hitch(this, this.createGroup));
+         this.alfSubscribe("HORIZON3_ADD_USERS_TO_GROUP", lang.hitch(this, this.addUsersToGroup));
+      },
+
+      /**
+       * 
+       * @instance
+       */
+      addUsersToGroup: function horizon3_UserAndGroupService__createGroup(payload) {
+
       },
 
       /**
