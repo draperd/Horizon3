@@ -1,0 +1,9 @@
+.horizon3-BackgroundImage {
+   &.horizon1 {
+      background-image: url("./images/horizon1.jpg");
+
+      .alfresco-layout-ClassicWindow {
+         background-color: #fff;
+      }
+   }
+}

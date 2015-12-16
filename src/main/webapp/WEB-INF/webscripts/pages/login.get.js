@@ -27,60 +27,68 @@ model.jsonModel = {
          config: {
             defaultLoginPage: "ap/ws/home"
          }
-      },
-      "alfresco/services/ErrorReporter"
+      }
    ],
    widgets:[
       {
-         name: "alfresco/layout/AbsoluteCenterWidgets",
+         name: "horizon3/BackgroundImage",
          config: {
-            width: 400,
+            additionalCssClasses: "horizon1",
             widgets: [
                {
-                  name: "alfresco/layout/ClassicWindow",
+                  name: "alfresco/layout/AbsoluteCenterWidgets",
                   config: {
-                     title: "Login",
-                     additionalCssClasses: "bottomBorderRadius shadow",
+                     width: 400,
                      widgets: [
                         {
-                           name: "alfresco/forms/Form",
+                           name: "alfresco/layout/ClassicWindow",
                            config: {
-                              okButtonLabel: "Login",
-                              okButtonPublishTopic: "ALF_DOLOGIN",
-                              okButtonPublishGlobal: true,
-                              showCancelButton: false,
+                              title: "Welcome to Horizon3",
+                              additionalCssClasses: "bottomBorderRadius shadow",
                               widgets: [
                                  {
-                                    name: "alfresco/forms/controls/DojoValidationTextBox",
+                                    name: "alfresco/forms/Form",
                                     config: {
-                                       name: "successUrl",
-                                       value: successUrl,
-                                       visibilityConfig: {
-                                          initialValue: false
-                                       }
-                                    }
-                                 },
-                                 {
-                                    name: "alfresco/forms/controls/DojoValidationTextBox",
-                                    config: {
-                                       name: "username",
-                                       label: "User Name",
-                                       description: "Your Alfresco user name",
-                                       value: context.properties["alfLastUsername"],
-                                       requirementConfig: {
-                                          initialValue: true
-                                       }
-                                    }
-                                 },
-                                 {
-                                    name: "alfresco/forms/controls/Password",
-                                    config: {
-                                       name: "password",
-                                       label: "Password",
-                                       description: "The password associated with your Alfresco user name",
-                                       requirementConfig: {
-                                          initialValue: true
-                                       }
+                                       showValidationErrorsImmediately: false,
+                                       okButtonLabel: "Login",
+                                       okButtonPublishTopic: "ALF_DOLOGIN",
+                                       okButtonPublishGlobal: true,
+                                       showCancelButton: false,
+                                       widgets: [
+                                          {
+                                             name: "alfresco/forms/controls/DojoValidationTextBox",
+                                             config: {
+                                                name: "successUrl",
+                                                value: successUrl,
+                                                visibilityConfig: {
+                                                   initialValue: false
+                                                }
+                                             }
+                                          },
+                                          {
+                                             name: "alfresco/forms/controls/DojoValidationTextBox",
+                                             config: {
+                                                name: "username",
+                                                label: "User Name",
+                                                description: "Your Alfresco user name",
+                                                value: context.properties["alfLastUsername"],
+                                                requirementConfig: {
+                                                   initialValue: true
+                                                }
+                                             }
+                                          },
+                                          {
+                                             name: "alfresco/forms/controls/Password",
+                                             config: {
+                                                name: "password",
+                                                label: "Password",
+                                                description: "The password associated with your Alfresco user name",
+                                                requirementConfig: {
+                                                   initialValue: true
+                                                }
+                                             }
+                                          }
+                                       ]
                                     }
                                  }
                               ]

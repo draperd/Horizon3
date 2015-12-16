@@ -133,5 +133,9 @@
          </list>
       </property>
    </bean>
+
+   <bean id="css.data.image.handler" parent="css.data.image.handler.abstract" class="org.springframework.extensions.surf.CssImageDataHandler">
+      <property name="maximumImageSize" value="10240" />
+   </bean>
    
 </beans>

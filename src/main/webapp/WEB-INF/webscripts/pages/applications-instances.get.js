@@ -78,6 +78,33 @@ buildPageModel({
                {
                   name: "alfresco/lists/views/AlfListView",
                   config: {
+                     additionalCssClasses: "bordered",
+                     widgetsForHeader: [
+                        {
+                           name: "alfresco/lists/views/layouts/HeaderCell",
+                           config: {
+                              label: "Name"
+                           }
+                        },
+                        {
+                           name: "alfresco/lists/views/layouts/HeaderCell",
+                           config: {
+                              label: "Template Used"
+                           }
+                        },
+                        {
+                           name: "alfresco/lists/views/layouts/HeaderCell",
+                           config: {
+                              label: "Group Visibility"
+                           }
+                        },
+                        {
+                           name: "alfresco/lists/views/layouts/HeaderCell",
+                           config: {
+                              label: "Actions"
+                           }
+                        },
+                     ],
                      widgets: [
                         {
                            name: "alfresco/lists/views/layouts/Row",
@@ -86,6 +113,7 @@ buildPageModel({
                                  {
                                     name: "alfresco/lists/views/layouts/Cell",
                                     config: {
+                                       additionalCssClasses: "mediumpad",
                                        widgets: [
                                           {
                                              name: "alfresco/renderers/PropertyLink",
@@ -106,10 +134,41 @@ buildPageModel({
                                  {
                                     name: "alfresco/lists/views/layouts/Cell",
                                     config: {
+                                       additionalCssClasses: "mediumpad",
+                                       widgets: [
+                                          {
+                                             name: "alfresco/renderers/Property",
+                                             config: {
+                                                propertyToRender: "applicationType.name"
+                                             }
+                                          }
+                                       ]
+                                    }
+                                 },
+                                 {
+                                    name: "alfresco/lists/views/layouts/Cell",
+                                    config: {
+                                       additionalCssClasses: "mediumpad",
+                                       widgets: [
+                                          {
+                                             name: "alfresco/renderers/Property",
+                                             config: {
+                                                propertyToRender: "groups"
+                                             }
+                                          }
+                                       ]
+                                    }
+                                 },
+                                 
+                                 {
+                                    name: "alfresco/lists/views/layouts/Cell",
+                                    config: {
+                                       additionalCssClasses: "mediumpad",
                                        widgets: [
                                           {
                                              name: "alfresco/renderers/PublishAction",
                                              config: {
+                                                propertyToRender: "name",
                                                 altText: "Click to delete {name}",
                                                 iconClass: "delete-16",
                                                 publishTopic: "ALF_CRUD_DELETE",
