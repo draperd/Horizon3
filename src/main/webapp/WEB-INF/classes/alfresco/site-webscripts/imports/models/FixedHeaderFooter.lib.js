@@ -193,8 +193,8 @@ function getDefaultFixedHeaderFooterModel() {
    return {
       property: "name",
       targetValues: ["alfresco/layout/FixedHeaderFooter"],
-      widgetsForConfig: getFixedHeaderFooterConfig(),
-      widgetsForNestedConfig: addCommonConfigTabs(getFixedHeaderFooterNestedConfig(),[]),
+      widgetsForConfig: addCommonConfigTabs(getFixedHeaderFooterConfig(),["config.heightMode", "config.widgetsForHeader","config.widgets","config.widgetsForFooter"]),
+      widgetsForNestedConfig: getFixedHeaderFooterNestedConfig(),
       widgetsForDisplay: getFixedHeaderFooterDisplay()
    };
 }
