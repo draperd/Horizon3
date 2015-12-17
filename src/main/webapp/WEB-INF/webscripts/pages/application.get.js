@@ -164,19 +164,32 @@ function processTemplate(parameters) {
             config: parent.config,
             processFunction: setTemplateConfiguration
          });
-
-         // Swap the loaded template back into the correct location...
-         var arrayToUpdate = parameters.ancestors[parameters.ancestors.length-3];
-         var indexToSwapForTemplate = parameters.ancestors[parameters.ancestors.length-2];
-         arrayToUpdate.splice(indexToSwapForTemplate, 1);
-         for (var i=0; i<loadedTemplate.widgets.length; i++)
-         {
-            arrayToUpdate.splice(indexToSwapForTemplate + i, 0, loadedTemplate.widgets[i]);
-         }
       }
       else
       {
          // TODO: Log missing config (not able to set configure template without values!)
+      }
+
+      // Swap the loaded template back into the correct location...
+      var arrayToUpdate = parameters.ancestors[parameters.ancestors.length-3];
+      var indexToSwapForTemplate = parameters.ancestors[parameters.ancestors.length-2];
+      arrayToUpdate.splice(indexToSwapForTemplate, 1);
+      for (var i=0; i<loadedTemplate.widgets.length; i++)
+      {
+         arrayToUpdate.splice(indexToSwapForTemplate + i, 0, loadedTemplate.widgets[i]);
+      }
+
+      // Add in any services from the template into the root services...
+      if (loadedTemplate.services)
+      {
+         if (parameters.ancestors[0].services)
+         {
+            parameters.ancestors[0].services = parameters.ancestors[0].services.concat(loadedTemplate.services);
+         }
+         else
+         {
+            parameters.ancestors[0].services = loadedTemplate.services;
+         }
       }
    }
    else
