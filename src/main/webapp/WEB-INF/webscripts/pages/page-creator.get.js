@@ -4,6 +4,9 @@
 <import resource="classpath:alfresco/site-webscripts/imports/models/DocumentList.lib.js">
 <import resource="classpath:alfresco/site-webscripts/imports/models/HtmlListView.lib.js">
 <import resource="classpath:alfresco/site-webscripts/imports/models/FixedHeaderFooter.lib.js">
+<import resource="classpath:alfresco/site-webscripts/imports/models/ListViewLayout.lib.js">
+<import resource="classpath:alfresco/site-webscripts/imports/models/ListView.lib.js">
+<import resource="classpath:alfresco/site-webscripts/imports/models/Lists.lib.js">
 
 
 var palette = [
@@ -104,9 +107,105 @@ var palette = [
                               },
                               {
                                  type: [ "widget" ],
+                                 label: "Basic List",
+                                 value: {
+                                    name: "alfresco/lists/AlfSortablePaginatedList",
+                                    config: {
+                                       useModellingService: true,
+                                       label: "Widgets",
+                                       targetProperty: "config.widgets"
+                                    }
+                                 }
+                              },
+                              {
+                                 type: [ "widget" ],
+                                 label: "List View",
+                                 value: {
+                                    name: "alfresco/lists/views/AlfListView",
+                                    config: {
+                                       useModellingService: true,
+                                       label: "Widgets",
+                                       targetProperty: "config.widgets"
+                                    }
+                                 }
+                              },
+                              {
+                                 type: [ "widget" ],
                                  label: "HTML List View",
                                  value: {
                                     name: "alfresco/lists/views/HtmlListView",
+                                    config: {
+                                       useModellingService: true,
+                                       label: "Widgets",
+                                       targetProperty: "config.widgets"
+                                    }
+                                 }
+                              },
+                              {
+                                 type: [ "widget" ],
+                                 label: "Table",
+                                 value: {
+                                    name: "alfresco/lists/views/layouts/Table",
+                                    config: {
+                                       useModellingService: true,
+                                       label: "Widgets",
+                                       targetProperty: "config.widgets"
+                                    }
+                                 }
+                              },
+                              {
+                                 type: [ "widget" ],
+                                 label: "Row",
+                                 value: {
+                                    name: "alfresco/lists/views/layouts/Row",
+                                    config: {
+                                       useModellingService: true,
+                                       label: "Widgets",
+                                       targetProperty: "config.widgets"
+                                    }
+                                 }
+                              },
+                              {
+                                 type: [ "widget" ],
+                                 label: "Cell",
+                                 value: {
+                                    name: "alfresco/lists/views/layouts/Cell",
+                                    config: {
+                                       useModellingService: true,
+                                       label: "Widgets",
+                                       targetProperty: "config.widgets"
+                                    }
+                                 }
+                              },
+                              {
+                                 type: [ "widget" ],
+                                 label: "Heading",
+                                 value: {
+                                    name: "alfresco/lists/views/layouts/HeaderCell",
+                                    config: {
+                                       useModellingService: true,
+                                       label: "Widgets",
+                                       targetProperty: "config.widgets"
+                                    }
+                                 }
+                              },
+                              {
+                                 type: [ "widget" ],
+                                 label: "Grid Entry",
+                                 value: {
+                                    name: "alfresco/lists/views/layouts/CellContainer",
+                                    config: {
+                                       useModellingService: true,
+                                       label: "Widgets",
+                                       targetProperty: "config.widgets"
+                                    }
+                                 }
+                              },
+                              {
+                                 type: [ "widget" ],
+                                 label: "Column",
+                                 value: {
+                                    name: "alfresco/lists/views/layouts/Column",
                                     config: {
                                        useModellingService: true,
                                        label: "Widgets",
@@ -303,7 +402,10 @@ var services = getBasicCreationTemplateServices().concat([
             getDefaultFormControlModel(),
             getDefaultDocumentListModel(),
             getDefaultHtmlListViewModel(),
-            getDefaultFixedHeaderFooterModel()
+            getDefaultFixedHeaderFooterModel(),
+            getDefaultListViewLayoutModel(),
+            getDefaultListViewModel(),
+            getDefaultListsModel()
          ]
       }
    }
