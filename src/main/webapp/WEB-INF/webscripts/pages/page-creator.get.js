@@ -5,88 +5,169 @@
 <import resource="classpath:alfresco/site-webscripts/imports/models/HtmlListView.lib.js">
 <import resource="classpath:alfresco/site-webscripts/imports/models/FixedHeaderFooter.lib.js">
 
+
 var palette = [
    {
-      id: "DRAG_PALETTE",
-      name: "alfresco/lists/AlfList",
+      name: "alfresco/layout/AlfTabContainer",
       config: {
-         loadDataPublishTopic: "ALF_GET_ALL_REMOTE_PAGES",
-         noDataMessage: "No remote templates",
          widgets: [
             {
-               name: "alfresco/dnd/DragAndDropItemsListView"
-            }
-         ]
-      }
-   },
-   {
-      id: "DRAG_PALETTE",
-      name: "alfresco/dnd/DragAndDropItems",
-      config: {
-         items: [
-            {
-               type: [ "service" ],
-               label: "Document Service",
-               value: {
-                  name: "alfresco/services/DocumentService",
-                  config: {
-                     useModellingService: true,
-                     label: "Widgets",
-                     targetProperty: "config.widgets"
-                  }
+               id: "DRAG_PALETTE",
+               title: "Pages",
+               name: "alfresco/lists/AlfList",
+               config: {
+                  loadDataPublishTopic: "ALF_GET_ALL_REMOTE_PAGES",
+                  noDataMessage: "No remote templates",
+                  widgets: [
+                     {
+                        name: "alfresco/dnd/DragAndDropItemsListView"
+                     }
+                  ]
                }
             },
             {
-               type: [ "widget" ],
-               label: "Fixed Header Footer",
-               value: {
-                  name: "alfresco/layout/FixedHeaderFooter",
-                  config: {
-                     useModellingService: true,
-                     label: "Widgets",
-                     targetProperty: "config.widgets"
-                  }
+               name: "alfresco/layout/VerticalWidgets",
+               title: "Services",
+               config: {
+                  widgets: [
+                     {
+                        id: "DRAG_PALETTE",
+                        title: "Widgets",
+                        name: "alfresco/dnd/DragAndDropItems",
+                        config: {
+                           items: [
+                              {
+                                 type: [ "service" ],
+                                 label: "Document Service",
+                                 value: {
+                                    name: "alfresco/services/DocumentService",
+                                    config: {
+                                       useModellingService: true,
+                                       label: "Widgets",
+                                       targetProperty: "config.widgets"
+                                    }
+                                 }
+                              }
+                           ]
+                        }
+                     }
+                  ]
                }
             },
             {
-               type: [ "widget" ],
-               label: "Document List",
-               value: {
-                  name: "alfresco/documentlibrary/AlfDocumentList",
-                  config: {
-                     useModellingService: true,
-                     label: "Widgets",
-                     targetProperty: "config.widgets"
-                  }
+               name: "alfresco/layout/VerticalWidgets",
+               title: "Layout",
+               config: {
+                  widgets: [
+                     {
+                        name: "alfresco/dnd/DragAndDropItems",
+                        config: {
+                           items: [
+                              {
+                                 type: [ "widget" ],
+                                 label: "Fixed Header Footer",
+                                 value: {
+                                    name: "alfresco/layout/FixedHeaderFooter",
+                                    config: {
+                                       useModellingService: true,
+                                       label: "Widgets",
+                                       targetProperty: "config.widgets"
+                                    }
+                                 }
+                              }
+                           ]
+                        }
+                     }
+                  ]
                }
             },
             {
-               type: [ "widget" ],
-               label: "HTML List View",
-               value: {
-                  name: "alfresco/lists/views/HtmlListView",
-                  config: {
-                     useModellingService: true,
-                     label: "Widgets",
-                     targetProperty: "config.widgets"
-                  }
+               name: "alfresco/layout/VerticalWidgets",
+               title: "Lists",
+               config: {
+                  widgets: [
+                     {
+                        name: "alfresco/dnd/DragAndDropItems",
+                        config: {
+                           items: [
+                              {
+                                 type: [ "widget" ],
+                                 label: "Document List",
+                                 value: {
+                                    name: "alfresco/documentlibrary/AlfDocumentList",
+                                    config: {
+                                       useModellingService: true,
+                                       label: "Widgets",
+                                       targetProperty: "config.widgets"
+                                    }
+                                 }
+                              },
+                              {
+                                 type: [ "widget" ],
+                                 label: "HTML List View",
+                                 value: {
+                                    name: "alfresco/lists/views/HtmlListView",
+                                    config: {
+                                       useModellingService: true,
+                                       label: "Widgets",
+                                       targetProperty: "config.widgets"
+                                    }
+                                 }
+                              }
+                           ]
+                        }
+                     }
+                  ]
                }
             },
             {
-               type: [ "widget" ],
-               label: "Form Control",
-               value: {
-                  name: "alfresco/forms/controls/TextBox",
-                  config: {
-                     label: "No Label",
-                     description: "No description",
-                     value: ""
-                  }
+               name: "alfresco/layout/VerticalWidgets",
+               title: "Forms",
+               config: {
+                  widgets: [
+                     {
+                        name: "alfresco/dnd/DragAndDropItems",
+                        config: {
+                           items: [
+                              {
+                                 type: [ "widget" ],
+                                 label: "Form Control",
+                                 value: {
+                                    name: "alfresco/forms/controls/TextBox",
+                                    config: {
+                                       label: "No Label",
+                                       description: "No description",
+                                       value: ""
+                                    }
+                                 }
+                              }
+                           ]
+                        }
+                     }
+                  ]
+               }
+            },
+            {
+               name: "alfresco/layout/VerticalWidgets",
+               title: "Empty",
+               config: {
+                  widgets: [
+                     {
+                        name: "alfresco/dnd/DragAndDropItems",
+                        config: {
+                           items: [
+                              
+                           ]
+                        }
+                     }
+                  ]
                }
             }
          ]
       }
    }
+
+   
 ];
 
 var coreWidgets = [
@@ -133,14 +214,14 @@ function getBasicCreationTemplateWidgets(paletteWidgets) {
                            name: "alfresco/layout/ClassicWindow",
                            widthPx: 300,
                            config: {
-                              title: "Widget Palette",
+                              title: "Palette",
                               widgets: paletteWidgets
                            }
                         },
                         {
                            name: "alfresco/layout/ClassicWindow",
                            config: {
-                              title: "Widget Layout",
+                              title: "Canvas",
                               widgets: [
                                  {
                                     id: "FORM1",
@@ -156,8 +237,8 @@ function getBasicCreationTemplateWidgets(paletteWidgets) {
                                              name: "alfresco/forms/controls/TextBox",
                                              config: {
                                                 name: "pageName",
-                                                label: "Template Name",
-                                                description: "This is the name of the page as it will be saved on the repository",
+                                                label: "Name",
+                                                description: "This is the name of the page or template as it will be saved on the repository",
                                                 placeHolder: "Name...",
                                                 requirementConfig: {
                                                    initialValue: true
@@ -170,6 +251,7 @@ function getBasicCreationTemplateWidgets(paletteWidgets) {
                                              config: {
                                                 label: "Services",
                                                 name: "services",
+                                                description: "Services allow widgets to interact and to access data",
                                                 value: null,
                                                 acceptTypes: ["service"],
                                                 useModellingService: true
@@ -181,6 +263,7 @@ function getBasicCreationTemplateWidgets(paletteWidgets) {
                                              config: {
                                                 label: "Widgets",
                                                 name: "widgets",
+                                                description: "Widgets represent the visible user-interface",
                                                 value: null,
                                                 acceptTypes: ["widget"],
                                                 useModellingService: true
