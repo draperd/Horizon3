@@ -7,6 +7,7 @@
 <import resource="classpath:alfresco/site-webscripts/imports/models/ListViewLayout.lib.js">
 <import resource="classpath:alfresco/site-webscripts/imports/models/ListView.lib.js">
 <import resource="classpath:alfresco/site-webscripts/imports/models/Lists.lib.js">
+<import resource="classpath:alfresco/site-webscripts/imports/models/Property.lib.js">
 
 
 var palette = [
@@ -44,6 +45,103 @@ var palette = [
                                  label: "Document Service",
                                  value: {
                                     name: "alfresco/services/DocumentService",
+                                    config: {
+                                       rawData: true,
+                                       useModellingService: true,
+                                       label: "Widgets",
+                                       targetProperty: "config.widgets"
+                                    }
+                                 }
+                              },
+                              {
+                                 type: [ "service" ],
+                                 label: "REST API Service",
+                                 value: {
+                                    name: "alfresco/services/CrudService",
+                                    config: {
+                                       useModellingService: true,
+                                       label: "Widgets",
+                                       targetProperty: "config.widgets"
+                                    }
+                                 }
+                              },
+                              {
+                                 type: [ "service" ],
+                                 label: "Notification Service",
+                                 value: {
+                                    name: "alfresco/services/NotificationService",
+                                    config: {
+                                       useModellingService: true,
+                                       label: "Widgets",
+                                       targetProperty: "config.widgets"
+                                    }
+                                 }
+                              },
+                              {
+                                 type: [ "service" ],
+                                 label: "Navigation Service",
+                                 value: {
+                                    name: "alfresco/services/NavigationService",
+                                    config: {
+                                       useModellingService: true,
+                                       label: "Widgets",
+                                       targetProperty: "config.widgets"
+                                    }
+                                 }
+                              },
+                              {
+                                 type: [ "service" ],
+                                 label: "Dialog Service",
+                                 value: {
+                                    name: "alfresco/services/DialogService",
+                                    config: {
+                                       useModellingService: true,
+                                       label: "Widgets",
+                                       targetProperty: "config.widgets"
+                                    }
+                                 }
+                              },
+                              {
+                                 type: [ "service" ],
+                                 label: "Content Service",
+                                 value: {
+                                    name: "alfresco/services/ContentService",
+                                    config: {
+                                       useModellingService: true,
+                                       label: "Widgets",
+                                       targetProperty: "config.widgets"
+                                    }
+                                 }
+                              },
+                              {
+                                 type: [ "service" ],
+                                 label: "Upload Service",
+                                 value: {
+                                    name: "alfresco/services/UploadService",
+                                    config: {
+                                       useModellingService: true,
+                                       label: "Widgets",
+                                       targetProperty: "config.widgets"
+                                    }
+                                 }
+                              },
+                              {
+                                 type: [ "service" ],
+                                 label: "Action Service",
+                                 value: {
+                                    name: "alfresco/services/ActionService",
+                                    config: {
+                                       useModellingService: true,
+                                       label: "Widgets",
+                                       targetProperty: "config.widgets"
+                                    }
+                                 }
+                              },
+                              {
+                                 type: [ "service" ],
+                                 label: "Search Service",
+                                 value: {
+                                    name: "alfresco/services/SearchService",
                                     config: {
                                        useModellingService: true,
                                        label: "Widgets",
@@ -248,6 +346,33 @@ var palette = [
             },
             {
                name: "alfresco/layout/VerticalWidgets",
+               title: "Renderers",
+               config: {
+                  widgets: [
+                     {
+                        name: "alfresco/dnd/DragAndDropItems",
+                        config: {
+                           items: [
+                              {
+                                 type: [ "widget" ],
+                                 label: "Property",
+                                 value: {
+                                    name: "alfresco/renderers/Property",
+                                    config: {
+                                       useModellingService: true,
+                                       label: "Widgets",
+                                       targetProperty: "config.widgets"
+                                    }
+                                 }
+                              }
+                           ]
+                        }
+                     }
+                  ]
+               }
+            },
+            {
+               name: "alfresco/layout/VerticalWidgets",
                title: "Empty",
                config: {
                   widgets: [
@@ -405,7 +530,8 @@ var services = getBasicCreationTemplateServices().concat([
             getDefaultFixedHeaderFooterModel(),
             getDefaultListViewLayoutModel(),
             getDefaultListViewModel(),
-            getDefaultListsModel()
+            getDefaultListsModel(),
+            getDefaultPropertyModel()
          ]
       }
    }
