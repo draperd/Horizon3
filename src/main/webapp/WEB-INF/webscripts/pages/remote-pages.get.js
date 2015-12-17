@@ -53,7 +53,7 @@ buildPageModel({
                                                 publishPayloadType: "PROCESS",
                                                 publishPayloadModifiers: ["processCurrentItemTokens"],
                                                 publishPayload: {
-                                                   url: "app/{name}"
+                                                   url: "ap/ws/page-creator?pageName={name}"
                                                 }
                                              }
                                           }

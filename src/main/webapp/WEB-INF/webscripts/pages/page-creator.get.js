@@ -8,6 +8,65 @@
 <import resource="classpath:alfresco/site-webscripts/imports/models/ListView.lib.js">
 <import resource="classpath:alfresco/site-webscripts/imports/models/Lists.lib.js">
 <import resource="classpath:alfresco/site-webscripts/imports/models/Property.lib.js">
+<import resource="classpath:alfresco/site-webscripts/imports/models/Document.lib.js">
+<import resource="classpath:alfresco/site-webscripts/imports/models/NodePreview.lib.js">
+<import resource="classpath:alfresco/site-webscripts/imports/models/SearchList.lib.js">
+
+var formValue;
+if (page.url.args["pageName"])
+{
+   var pageName = page.url.args["pageName"];
+   var pageModel;
+   if (pageName)
+   {
+      // If a page name has been supplied then retrieve it's details...
+      // By passing the name only a single result should be returned...
+      var json = remote.call("/remote-share/pages/name/" + pageName);
+          pageDetails = null;
+      try
+      {
+         if (json.status == 200)
+         {
+            pageDetails = JSON.parse(json.response);
+         }
+         else
+         {
+            model.jsonModelError = "remote.page.error.remotefailure";
+         }
+         if (pageDetails &&
+             pageDetails.items &&
+             pageDetails.items.length == 1 &&
+             pageDetails.items[0].content)
+         {
+            pageDefinition = pageDetails.items[0].content;
+
+            pageModel = JSON.parse(pageDefinition);
+            formValue = {
+               pageName: pageName,
+               services: pageModel.services || [],
+               widgets: pageModel.widgets || []
+            }
+         }
+         else
+         {
+            model.jsonModelError = "remote.page.error.invalidData";
+            model.jsonModelErrorArgs = pageDetails;
+         }
+
+         
+      }
+      catch(e)
+      {
+         model.jsonModelError = "remote.page.load.error";
+         model.jsonModelErrorArgs = page.url.templateArgs.pagename;
+      }
+   }
+   else
+   {
+      // No page name supplied...
+      model.jsonModelError = "remote.page.error.nopage";
+   }
+}
 
 
 var palette = [
@@ -205,6 +264,18 @@ var palette = [
                               },
                               {
                                  type: [ "widget" ],
+                                 label: "Search List",
+                                 value: {
+                                    name: "alfresco/search/AlfSearchList",
+                                    config: {
+                                       useModellingService: true,
+                                       label: "Widgets",
+                                       targetProperty: "config.widgets"
+                                    }
+                                 }
+                              },
+                              {
+                                 type: [ "widget" ],
                                  label: "Basic List",
                                  value: {
                                     name: "alfresco/lists/AlfSortablePaginatedList",
@@ -364,6 +435,30 @@ var palette = [
                                        targetProperty: "config.widgets"
                                     }
                                  }
+                              },
+                              {
+                                 type: [ "widget" ],
+                                 label: "Node",
+                                 value: {
+                                    name: "alfresco/documentlibrary/AlfDocument",
+                                    config: {
+                                       useModellingService: true,
+                                       label: "Widgets",
+                                       targetProperty: "config.widgets"
+                                    }
+                                 }
+                              },
+                              {
+                                 type: [ "widget" ],
+                                 label: "Preview",
+                                 value: {
+                                    name: "alfresco/preview/AlfDocumentPreview",
+                                    config: {
+                                       useModellingService: true,
+                                       label: "Widgets",
+                                       targetProperty: "config.widgets"
+                                    }
+                                 }
                               }
                            ]
                         }
@@ -406,17 +501,6 @@ var coreWidgets = [
 
 function getBasicCreationTemplateServices() {
    return [
-      {
-         name: "alfresco/services/LoggingService",
-         config: {
-            loggingPreferences: {
-               enabled: true,
-               all: true,
-               warn: true,
-               error: true
-            }
-         }
-      },
       "alfresco/services/DialogService",
       "alfresco/services/PageService",
       "alfresco/services/OptionsService",
@@ -456,6 +540,7 @@ function getBasicCreationTemplateWidgets(paletteWidgets) {
                                        okButtonPublishTopic: "ALF_CREATE_PAGE_DEFINITION",
                                        okButtonPublishGlobal: true,
                                        showCancelButton: false,
+                                       value: formValue,
                                        widgets: [
                                           {
                                              name: "alfresco/forms/controls/TextBox",
@@ -531,7 +616,10 @@ var services = getBasicCreationTemplateServices().concat([
             getDefaultListViewLayoutModel(),
             getDefaultListViewModel(),
             getDefaultListsModel(),
-            getDefaultPropertyModel()
+            getDefaultPropertyModel(),
+            getDefaultDocumentModel(),
+            getDefaultNodePreviewModel(),
+            getDefaultSearchListModel()
          ]
       }
    }
