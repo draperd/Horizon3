@@ -198,11 +198,47 @@ function processTemplate(parameters) {
    }
 }
 
+function processNestedPages(parameters) {
+
+   // The object should actually be a string (i.e. the name or nodeRef of the template)...
+   if (parameters.object.widgets &&
+       parameters.ancestors)
+   {
+      // Swap the loaded template back into the correct location...
+      var arrayToUpdate = parameters.ancestors[parameters.ancestors.length-3];
+      var indexToSwapForTemplate = parameters.ancestors[parameters.ancestors.length-2];
+      arrayToUpdate.splice(indexToSwapForTemplate, 1);
+      for (var i=0; i<parameters.object.widgets.length; i++)
+      {
+         arrayToUpdate.splice(indexToSwapForTemplate + i, 0, parameters.object.widgets[i]);
+      }
+   }
+   if (parameters.object.services &&
+       parameters.ancestors)
+   {
+      if (parameters.object.services)
+      {
+         if (parameters.ancestors[0].services)
+         {
+            parameters.ancestors[0].services = parameters.ancestors[0].services.concat(parameters.object.services);
+         }
+         else
+         {
+            parameters.ancestors[0].services = parameters.object.services;
+         }
+      }
+   }
+}
+
 // Processes all templates found in the supplied widgets array...
 function processTemplates(widgets) {
    findObject(widgets, {
       prefix: "_alfTemplateName",
       processFunction: processTemplate
+   });
+   findObject(widgets, {
+      prefix: "templateModel",
+      processFunction: processNestedPages
    });
 }
 
