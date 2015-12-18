@@ -1,6 +1,7 @@
 <import resource="classpath:alfresco/site-webscripts/imports/horizon3.lib.js">
 
 var services = [
+   "alfresco/services/ContentService",
    "alfresco/services/CrudService",
    "alfresco/services/DialogService",
    "alfresco/services/NotificationService",
@@ -78,6 +79,27 @@ buildPageModel({
                {
                   name: "alfresco/lists/views/AlfListView",
                   config: {
+                     additionalCssClasses: "bordered",
+                     widgetsForHeader: [
+                        {
+                           name: "alfresco/lists/views/layouts/HeaderCell",
+                           config: {
+                              label: "Name"
+                           }
+                        },
+                        {
+                           name: "alfresco/lists/views/layouts/HeaderCell",
+                           config: {
+                              label: "Root Page"
+                           }
+                        },
+                        {
+                           name: "alfresco/lists/views/layouts/HeaderCell",
+                           config: {
+                              label: "Actions"
+                           }
+                        },
+                     ],
                      widgets: [
                         {
                            name: "alfresco/lists/views/layouts/Row",
@@ -86,6 +108,7 @@ buildPageModel({
                                  {
                                     name: "alfresco/lists/views/layouts/Cell",
                                     config: {
+                                       additionalCssClasses: "mediumpad",
                                        widgets: [
                                           {
                                              name: "alfresco/renderers/Property",
@@ -99,6 +122,41 @@ buildPageModel({
                                  {
                                     name: "alfresco/lists/views/layouts/Cell",
                                     config: {
+                                       additionalCssClasses: "mediumpad",
+                                       widgets: [
+                                          {
+                                             name: "alfresco/renderers/InlineEditSelect",
+                                             config: {
+                                                propertyToRender: "rootPage",
+                                                postParam: "prop_surf_rootRage",
+                                                refreshCurrentItem: true,
+                                                publishTopic: "ALF_UPDATE_CONTENT_REQUEST",
+                                                publishPayloadType: "PROCESS",
+                                                publishPayloadModifiers: ["processCurrentItemTokens"],
+                                                publishPayloadItemMixin: false,
+                                                publishPayload: {
+                                                   nodeRef: "{nodeRef}",
+                                                   noRefresh: true
+                                                },
+                                                optionsConfig: {
+                                                   publishTopic: "ALF_GET_FORM_CONTROL_OPTIONS",
+                                                   publishPayload: {
+                                                      url: "/horizon3/proxy/alfresco/remote-share/pages",
+                                                      itemsAttribute: "items",
+                                                      labelAttribute: "name",
+                                                      valueAttribute: "nodeRef"
+                                                   }
+                                                }
+                                             }
+                                          }
+                                       ]
+                                    }
+                                 },
+                                 
+                                 {
+                                    name: "alfresco/lists/views/layouts/Cell",
+                                    config: {
+                                       additionalCssClasses: "mediumpad",
                                        widgets: [
                                           {
                                              name: "alfresco/renderers/PublishAction",

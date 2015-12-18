@@ -12,7 +12,9 @@
 <import resource="classpath:alfresco/site-webscripts/imports/models/NodePreview.lib.js">
 <import resource="classpath:alfresco/site-webscripts/imports/models/SearchList.lib.js">
 
-var formValue;
+var pageName;
+var services = [];
+var widgets = [];
 if (page.url.args["pageName"])
 {
    var pageName = page.url.args["pageName"];
@@ -39,13 +41,10 @@ if (page.url.args["pageName"])
              pageDetails.items[0].content)
          {
             pageDefinition = pageDetails.items[0].content;
-
             pageModel = JSON.parse(pageDefinition);
-            formValue = {
-               pageName: pageName,
-               services: pageModel.services || [],
-               widgets: pageModel.widgets || []
-            }
+            services =  pageModel.services || [];
+            widgets =  pageModel.widgets || [];
+            
          }
          else
          {
@@ -504,6 +503,7 @@ function getBasicCreationTemplateServices() {
       "alfresco/services/DialogService",
       "alfresco/services/PageService",
       "alfresco/services/OptionsService",
+      "alfresco/services/NotificationService",
       "horizon3/PageCreationService"
    ];
 }
@@ -537,10 +537,9 @@ function getBasicCreationTemplateWidgets(paletteWidgets) {
                                     config: {
                                        scopeFormControls: false,
                                        okButtonLabel: "Save",
-                                       okButtonPublishTopic: "ALF_CREATE_PAGE_DEFINITION",
+                                       okButtonPublishTopic: (!pageName ? "ALF_CREATE_PAGE_DEFINITION": "ALF_UPDATE_PAGE_DEFINITION"),
                                        okButtonPublishGlobal: true,
                                        showCancelButton: false,
-                                       value: formValue,
                                        widgets: [
                                           {
                                              name: "alfresco/forms/controls/TextBox",
@@ -551,21 +550,22 @@ function getBasicCreationTemplateWidgets(paletteWidgets) {
                                                 placeHolder: "Name...",
                                                 requirementConfig: {
                                                    initialValue: true
-                                                }
+                                                },
+                                                value: pageName || ""
                                              }
                                           },
-                                          {
-                                             id: "DROPPED_SERVICES",
-                                             name: "alfresco/forms/controls/DragAndDropTargetControl",
-                                             config: {
-                                                label: "Services",
-                                                name: "services",
-                                                description: "Services allow widgets to interact and to access data",
-                                                value: null,
-                                                acceptTypes: ["service"],
-                                                useModellingService: true
-                                             }
-                                          },
+                                          // {
+                                          //    id: "DROPPED_SERVICES",
+                                          //    name: "alfresco/forms/controls/DragAndDropTargetControl",
+                                          //    config: {
+                                          //       label: "Services",
+                                          //       name: "services",
+                                          //       description: "Services allow widgets to interact and to access data",
+                                          //       value: services,
+                                          //       acceptTypes: ["service"],
+                                          //       useModellingService: true
+                                          //    }
+                                          // },
                                           {
                                              id: "ROOT_DROPPED_ITEMS1",
                                              name: "alfresco/forms/controls/DragAndDropTargetControl",
@@ -573,7 +573,7 @@ function getBasicCreationTemplateWidgets(paletteWidgets) {
                                                 label: "Widgets",
                                                 name: "widgets",
                                                 description: "Widgets represent the visible user-interface",
-                                                value: null,
+                                                value: widgets,
                                                 acceptTypes: ["widget"],
                                                 useModellingService: true
                                              }

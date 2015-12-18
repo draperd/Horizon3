@@ -1,6 +1,7 @@
 <import resource="classpath:alfresco/site-webscripts/imports/horizon3.lib.js">
 
 var services = [
+   "alfresco/services/ContentService",
    "alfresco/services/CrudService",
    "alfresco/services/DialogService",
    "alfresco/services/NotificationService",
@@ -186,10 +187,35 @@ buildPageModel({
                                     config: {
                                        additionalCssClasses: "mediumpad",
                                        widgets: [
+                                          // {
+                                          //    name: "alfresco/renderers/Property",
+                                          //    config: {
+                                          //       propertyToRender: "groups"
+                                          //    }
+                                          // }
                                           {
-                                             name: "alfresco/renderers/Property",
+                                             name: "alfresco/renderers/InlineEditSelect",
                                              config: {
-                                                propertyToRender: "groups"
+                                                propertyToRender: "groups",
+                                                postParam: "prop_hzn_groupVisibility",
+                                                refreshCurrentItem: true,
+                                                publishTopic: "ALF_UPDATE_CONTENT_REQUEST",
+                                                publishPayloadType: "PROCESS",
+                                                publishPayloadModifiers: ["processCurrentItemTokens"],
+                                                publishPayloadItemMixin: false,
+                                                publishPayload: {
+                                                   nodeRef: "{nodeRef}",
+                                                   noRefresh: true
+                                                },
+                                                optionsConfig: {
+                                                   publishTopic: "ALF_GET_FORM_CONTROL_OPTIONS",
+                                                   publishPayload: {
+                                                      url: "/horizon3/proxy/alfresco/api/groups?sortBy=displayName&zone=APP.DEFAULT",
+                                                      itemsAttribute: "data",
+                                                      labelAttribute: "displayName",
+                                                      valueAttribute: "shortName"
+                                                   }
+                                                }
                                              }
                                           }
                                        ]

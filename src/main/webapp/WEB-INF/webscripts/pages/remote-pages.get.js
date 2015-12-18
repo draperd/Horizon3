@@ -35,6 +35,21 @@ buildPageModel({
                {
                   name: "alfresco/lists/views/AlfListView",
                   config: {
+                     additionalCssClasses: "bordered",
+                     widgetsForHeader: [
+                        {
+                           name: "alfresco/lists/views/layouts/HeaderCell",
+                           config: {
+                              label: "Name"
+                           }
+                        },
+                        {
+                           name: "alfresco/lists/views/layouts/HeaderCell",
+                           config: {
+                              label: "Actions"
+                           }
+                        },
+                     ],
                      widgets: [
                         {
                            name: "alfresco/lists/views/layouts/Row",
@@ -43,6 +58,7 @@ buildPageModel({
                                  {
                                     name: "alfresco/lists/views/layouts/Cell",
                                     config: {
+                                       additionalCssClasses: "mediumpad",
                                        widgets: [
                                           {
                                              name: "alfresco/renderers/PropertyLink",
@@ -63,6 +79,7 @@ buildPageModel({
                                  {
                                     name: "alfresco/lists/views/layouts/Cell",
                                     config: {
+                                       additionalCssClasses: "mediumpad",
                                        widgets: [
                                           {
                                              name: "alfresco/renderers/PublishAction",
