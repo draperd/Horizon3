@@ -459,11 +459,7 @@ buildPageModel({
          config: {
             widgets: [
                groupsTab,
-               usersTab,
-               {
-                  name: "alfresco/logging/DebugLog",
-                  title: "Debug Log"
-               }
+               usersTab
             ]
          }
       }

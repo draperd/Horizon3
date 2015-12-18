@@ -11,6 +11,8 @@
 <import resource="classpath:alfresco/site-webscripts/imports/models/Document.lib.js">
 <import resource="classpath:alfresco/site-webscripts/imports/models/NodePreview.lib.js">
 <import resource="classpath:alfresco/site-webscripts/imports/models/SearchList.lib.js">
+<import resource="classpath:alfresco/site-webscripts/imports/models/ClassicWindow.lib.js">
+<import resource="classpath:alfresco/site-webscripts/imports/models/Button.lib.js">
 
 var pageName;
 var services = [];
@@ -227,6 +229,18 @@ var palette = [
                                  label: "Fixed Header Footer",
                                  value: {
                                     name: "alfresco/layout/FixedHeaderFooter",
+                                    config: {
+                                       useModellingService: true,
+                                       label: "Widgets",
+                                       targetProperty: "config.widgets"
+                                    }
+                                 }
+                              },
+                              {
+                                 type: [ "widget" ],
+                                 label: "Window",
+                                 value: {
+                                    name: "alfresco/layout/ClassicWindow",
                                     config: {
                                        useModellingService: true,
                                        label: "Widgets",
@@ -467,14 +481,25 @@ var palette = [
             },
             {
                name: "alfresco/layout/VerticalWidgets",
-               title: "Empty",
+               title: "Other",
                config: {
                   widgets: [
                      {
                         name: "alfresco/dnd/DragAndDropItems",
                         config: {
                            items: [
-                              
+                              {
+                                 type: [ "widget" ],
+                                 label: "Navigation Button",
+                                 value: {
+                                    name: "alfresco/buttons/AlfButton",
+                                    config: {
+                                       useModellingService: true,
+                                       label: "Widgets",
+                                       targetProperty: "config.widgets"
+                                    }
+                                 }
+                              }
                            ]
                         }
                      }
@@ -619,7 +644,9 @@ var services = getBasicCreationTemplateServices().concat([
             getDefaultPropertyModel(),
             getDefaultDocumentModel(),
             getDefaultNodePreviewModel(),
-            getDefaultSearchListModel()
+            getDefaultSearchListModel(),
+            getDefaultClassicWindowModel(),
+            getDefaultButtonModel()
          ]
       }
    }

@@ -185,7 +185,7 @@ function getPropertyConfig() {
                      },
                      {
                         config: {
-                           value: "false",
+                           value: false,
                            description: "property.config.deemphasized.description",
                            label: "property.config.deemphasized.label",
                            fieldId: "DEEMPH",
@@ -216,7 +216,7 @@ function getPropertyConfig() {
                      },
                      {
                         config: {
-                           value: "false",
+                           value: false,
                            description: "property.config.warnIfNotAvailable.description",
                            label: "property.config.warnIfNotAvailable.label",
                            fieldId: "WARN",
