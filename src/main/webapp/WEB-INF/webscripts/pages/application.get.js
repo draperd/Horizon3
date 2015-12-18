@@ -212,6 +212,11 @@ function processNestedPages(parameters) {
       {
          arrayToUpdate.splice(indexToSwapForTemplate + i, 0, parameters.object.widgets[i]);
       }
+
+      findObject(parameters.object.widgets, {
+         prefix: "templateModel",
+         processFunction: processNestedPages
+      });
    }
    if (parameters.object.services &&
        parameters.ancestors)

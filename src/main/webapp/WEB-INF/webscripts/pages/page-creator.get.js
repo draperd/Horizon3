@@ -13,6 +13,8 @@
 <import resource="classpath:alfresco/site-webscripts/imports/models/SearchList.lib.js">
 <import resource="classpath:alfresco/site-webscripts/imports/models/ClassicWindow.lib.js">
 <import resource="classpath:alfresco/site-webscripts/imports/models/Button.lib.js">
+<import resource="classpath:alfresco/site-webscripts/imports/models/Title.lib.js">
+<import resource="classpath:alfresco/site-webscripts/imports/models/FacetFilters.lib.js">
 
 var pageName;
 var services = [];
@@ -499,6 +501,30 @@ var palette = [
                                        targetProperty: "config.widgets"
                                     }
                                  }
+                              },
+                              {
+                                 type: [ "widget" ],
+                                 label: "Title",
+                                 value: {
+                                    name: "alfresco/header/Title",
+                                    config: {
+                                       useModellingService: true,
+                                       label: "Widgets",
+                                       targetProperty: "config.widgets"
+                                    }
+                                 }
+                              },
+                              {
+                                 type: [ "widget" ],
+                                 label: "Search facet",
+                                 value: {
+                                    name: "alfresco/search/FacetFilters",
+                                    config: {
+                                       useModellingService: true,
+                                       label: "Widgets",
+                                       targetProperty: "config.widgets"
+                                    }
+                                 }
                               }
                            ]
                         }
@@ -529,6 +555,7 @@ function getBasicCreationTemplateServices() {
       "alfresco/services/PageService",
       "alfresco/services/OptionsService",
       "alfresco/services/NotificationService",
+      "alfresco/services/CrudService",
       "horizon3/PageCreationService"
    ];
 }
@@ -646,7 +673,9 @@ var services = getBasicCreationTemplateServices().concat([
             getDefaultNodePreviewModel(),
             getDefaultSearchListModel(),
             getDefaultClassicWindowModel(),
-            getDefaultButtonModel()
+            getDefaultButtonModel(),
+            getDefaultTitleModel(),
+            getDefaultFacetFiltersModel()
          ]
       }
    }

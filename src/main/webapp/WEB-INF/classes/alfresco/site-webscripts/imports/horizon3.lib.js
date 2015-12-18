@@ -42,7 +42,8 @@ function buildPageModel(data) {
                               align: "left",
                               config: {
                                  label: data.title,
-                                 setBrowserTitle: "Horizon 3",
+                                 browserTitlePrefix: "Horizon3",
+                                 setBrowserTitle: true,
                                  targetUrl: "ap/ws/home"
                               }
                            },
