@@ -14,7 +14,7 @@ function getDocumentConfig() {
                   widgets: [
                      {
                         config: {
-                           value: "",
+                           value: "response.item",
                            description: "document.config.itemProperty.description",
                            label: "document.config.itemProperty.label",
                            fieldId: "ITEM_PROPERTY",
@@ -76,7 +76,7 @@ function getDocumentConfig() {
                      },
                      {
                         config: {
-                           value: "false",
+                           value: true,
                            description: "document.config.xhrRequired.description",
                            label: "document.config.xhrRequired.label",
                            fieldId: "XHR",

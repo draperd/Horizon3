@@ -554,18 +554,18 @@ function getBasicCreationTemplateWidgets(paletteWidgets) {
                                                 value: pageName || ""
                                              }
                                           },
-                                          // {
-                                          //    id: "DROPPED_SERVICES",
-                                          //    name: "alfresco/forms/controls/DragAndDropTargetControl",
-                                          //    config: {
-                                          //       label: "Services",
-                                          //       name: "services",
-                                          //       description: "Services allow widgets to interact and to access data",
-                                          //       value: services,
-                                          //       acceptTypes: ["service"],
-                                          //       useModellingService: true
-                                          //    }
-                                          // },
+                                          {
+                                             id: "DROPPED_SERVICES",
+                                             name: "alfresco/forms/controls/DragAndDropTargetControl",
+                                             config: {
+                                                label: "Services",
+                                                name: "services",
+                                                description: "Services allow widgets to interact and to access data",
+                                                value: services,
+                                                acceptTypes: ["service"],
+                                                useModellingService: true
+                                             }
+                                          },
                                           {
                                              id: "ROOT_DROPPED_ITEMS1",
                                              name: "alfresco/forms/controls/DragAndDropTargetControl",
