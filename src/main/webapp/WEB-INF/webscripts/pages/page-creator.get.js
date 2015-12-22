@@ -104,6 +104,22 @@ var palette = [
                            items: [
                               {
                                  type: [ "service" ],
+                                 label: "Logging Service",
+                                 value: {
+                                    name: "alfresco/services/LoggingService",
+                                    config: {
+                                       loggingPreferences: {
+                                          enabled: true,
+                                          all: true
+                                       },
+                                       useModellingService: true,
+                                       label: "Widgets",
+                                       targetProperty: "config.widgets"
+                                    }
+                                 }
+                              },
+                              {
+                                 type: [ "service" ],
                                  label: "Document Service",
                                  value: {
                                     name: "alfresco/services/DocumentService",
@@ -453,6 +469,18 @@ var palette = [
                               },
                               {
                                  type: [ "widget" ],
+                                 label: "Property Link",
+                                 value: {
+                                    name: "alfresco/renderers/PropertyLink",
+                                    config: {
+                                       useModellingService: true,
+                                       label: "Widgets",
+                                       targetProperty: "config.widgets"
+                                    }
+                                 }
+                              },
+                              {
+                                 type: [ "widget" ],
                                  label: "Node",
                                  value: {
                                     name: "alfresco/documentlibrary/AlfDocument",
@@ -519,6 +547,18 @@ var palette = [
                                  label: "Search facet",
                                  value: {
                                     name: "alfresco/search/FacetFilters",
+                                    config: {
+                                       useModellingService: true,
+                                       label: "Widgets",
+                                       targetProperty: "config.widgets"
+                                    }
+                                 }
+                              },
+                              {
+                                 type: [ "widget" ],
+                                 label: "Debug Log",
+                                 value: {
+                                    name: "alfresco/logging/DebugLog",
                                     config: {
                                        useModellingService: true,
                                        label: "Widgets",
