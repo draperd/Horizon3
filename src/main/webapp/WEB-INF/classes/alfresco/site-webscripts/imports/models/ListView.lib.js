@@ -78,7 +78,7 @@ function getListViewDisplay() {
             },
             {
                config: {
-                  targetProperty: "config.widgets",
+                  targetProperty: "config.widgetForHeader",
                   useModellingService: true,
                   label: "Header"
                },

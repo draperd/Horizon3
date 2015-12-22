@@ -15,6 +15,8 @@
 <import resource="classpath:alfresco/site-webscripts/imports/models/Button.lib.js">
 <import resource="classpath:alfresco/site-webscripts/imports/models/Title.lib.js">
 <import resource="classpath:alfresco/site-webscripts/imports/models/FacetFilters.lib.js">
+<import resource="classpath:alfresco/site-webscripts/imports/models/Sidebar.lib.js">
+<import resource="classpath:alfresco/site-webscripts/imports/models/VerticalWidgets.lib.js">
 
 var pageName;
 var services = [];
@@ -247,6 +249,30 @@ var palette = [
                                  label: "Fixed Header Footer",
                                  value: {
                                     name: "alfresco/layout/FixedHeaderFooter",
+                                    config: {
+                                       useModellingService: true,
+                                       label: "Widgets",
+                                       targetProperty: "config.widgets"
+                                    }
+                                 }
+                              },
+                              {
+                                 type: [ "widget" ],
+                                 label: "Sidebar container",
+                                 value: {
+                                    name: "alfresco/layout/AlfSideBarContainer",
+                                    config: {
+                                       useModellingService: true,
+                                       label: "Widgets",
+                                       targetProperty: "config.widgets"
+                                    }
+                                 }
+                              },
+                              {
+                                 type: [ "widget" ],
+                                 label: "Vertical Widgets",
+                                 value: {
+                                    name: "alfresco/layout/VerticalWidgets",
                                     config: {
                                        useModellingService: true,
                                        label: "Widgets",
@@ -715,7 +741,9 @@ var services = getBasicCreationTemplateServices().concat([
             getDefaultClassicWindowModel(),
             getDefaultButtonModel(),
             getDefaultTitleModel(),
-            getDefaultFacetFiltersModel()
+            getDefaultFacetFiltersModel(),
+            getDefaultSidebarModel(),
+            getDefaultVerticalWidgetsModel()
          ]
       }
    }
